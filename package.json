@@ -1,6 +1,6 @@
 {
   "name": "@shrink/actions-docker-extract",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Extract from a Docker Image",
   "author": "Samuel Ryan <sam@samryan.co.uk>",
   "homepage": "https://github.com/shrink/actions-docker-extract#readme",

@@ -18,6 +18,12 @@ All inputs are required.
 | `image` | Docker Image to extract files from | `alpine` |
 | `path` | Path (from root) to a file or directory within Image | `/etc/motd` |
 
+## Outputs
+
+| ID  | Description | Example |
+| --- | ----------- | ------- |
+| `destination` | Destination path containing the extracted file(s) | `.extracted-1598717412` |
+
 ## Examples
 
 ### Build, Extract
@@ -64,7 +70,7 @@ jobs:
         with:
           registry: docker.pkg.github.com
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ github.token }}
       - uses: shrink/actions-docker-extract@v1
         with:
           image: ${{ github.repository }}/example-image:latest
