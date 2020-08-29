@@ -1,0 +1,19 @@
+name: 'Docker Extract'
+description: 'Extract file(s) from a Docker Image'
+author: 'Samuel Ryan <sam@samryan.co.uk>'
+inputs:
+  image:
+    description: 'Docker Image to extract files from'
+    required: true
+  path:
+    description: 'Path (from root) to a file or directory within Image'
+    required: true
+outputs:
+  destination:
+    description: 'Destination of extracted file(s)'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'scissors'
+  color: 'blue'
