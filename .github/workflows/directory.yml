@@ -14,7 +14,6 @@ jobs:
         with:
           image: example:${{ github.sha }}
           path: /files
-      - run:
-          test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
-          test -e ${{ steps.extract.outputs.destination }}/002.txt || exit 1
-          test -e ${{ steps.extract.outputs.destination }}/003.txt || exit 1
+      - run: test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
+      - run: test -e ${{ steps.extract.outputs.destination }}/002.txt || exit 1
+      - run: test -e ${{ steps.extract.outputs.destination }}/003.txt || exit 1
