@@ -22,7 +22,7 @@ jobs:
       - run: test -e ${{ steps.extract.outputs.destination }}/y/006.txt || exit 1
   nested-directory:
     runs-on: ubuntu-latest
-    name: Extract Nested Contents of Directory from Example Image
+    name: Extract Nested Directory from Example Image
     steps:
       - uses: actions/checkout@v2
       - run: docker build -t example:${{ github.sha }} ./.github/tests
@@ -31,5 +31,18 @@ jobs:
         with:
           image: example:${{ github.sha }}
           path: /files/x
+      - run: test -e ${{ steps.extract.outputs.destination }}/x/004.txt || exit 1
+      - run: test -e ${{ steps.extract.outputs.destination }}/x/005.txt || exit 1
+  nested-directory-contents:
+    runs-on: ubuntu-latest
+    name: Extract Nested Contents of Directory from Example Image
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker build -t example:${{ github.sha }} ./.github/tests
+      - uses: ./
+        id: extract
+        with:
+          image: example:${{ github.sha }}
+          path: /files/x/.
       - run: test -e ${{ steps.extract.outputs.destination }}/004.txt || exit 1
       - run: test -e ${{ steps.extract.outputs.destination }}/005.txt || exit 1
