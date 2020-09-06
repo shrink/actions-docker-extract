@@ -3,9 +3,9 @@ name: Test File Extraction
 on: [push]
 
 jobs:
-  extract-file:
+  root-file:
     runs-on: ubuntu-latest
-    name: Extract Example File From Built Image
+    name: Extract Example File From Root of Built Image
     steps:
       - uses: actions/checkout@v2
       - run: docker build -t example:${{ github.sha }} ./.github/tests
@@ -14,5 +14,16 @@ jobs:
         with:
           image: example:${{ github.sha }}
           path: /files/001.txt
-      - run:
-          test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
+      - run: test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
+  nested-file:
+    runs-on: ubuntu-latest
+    name: Extract Nexted Example File From Built Image
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker build -t example:${{ github.sha }} ./.github/tests
+      - uses: ./
+        id: extract
+        with:
+          image: example:${{ github.sha }}
+          path: /files/y/006.txt
+      - run: test -e ${{ steps.extract.outputs.destination }}/006.txt || exit 1
