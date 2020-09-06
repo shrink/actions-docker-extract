@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN mkdir -p /files
+RUN mkdir -p /files/{x,y}
 
 RUN echo "Hello, World 1! \$(date)" > /files/001.txt
 RUN echo "Hello, World 2! \$(date)" > /files/002.txt
