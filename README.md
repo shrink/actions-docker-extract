@@ -5,24 +5,28 @@ A GitHub Action for extracting files from a Docker Image.
 ```yaml
 - uses: shrink/actions-docker-extract@v1
   with:
-    image: 'docker.pkg.github.com/github/semantic/semantic'
-    path: '/etc/motd'
+    image: 'ghost:alpine'
+    path: '/var/lib/ghost/current/core/built/assets/.'
 ```
 
 ## Inputs
 
 All inputs are required.
 
-| ID  | Description | Example |
-| --- | ----------- | ------- |
-| `image` | Docker Image to extract files from | `alpine` |
-| `path` | Path (from root) to a file or directory within Image | `/etc/motd` |
+| ID  | Description | Examples |
+| --- | ----------- | -------- |
+| `image` | Docker Image to extract files from | `alpine` `docker.pkg.github.com/github/semantic/semantic` |
+| `path` | Path (from root) to a file or directory within Image | `files/example.txt` `files` `files/.` |
+
+> :paperclip: To copy the **contents** of a directory the `path` must end with
+`/.` otherwise the directory itself will be copied. More information about the
+specific rules can be found via the [docker cp][docker-cp] documentation.
 
 ## Outputs
 
 | ID  | Description | Example |
 | --- | ----------- | ------- |
-| `destination` | Destination path containing the extracted file(s) | `.extracted-1598717412` |
+| `destination` | Destination path containing the extracted file(s) | `.extracted-1598717412/` |
 
 ## Examples
 
@@ -46,7 +50,7 @@ jobs:
       - uses: shrink/actions-docker-extract@v1
         with:
           image: my-example-image
-          path: /app
+          path: /app/.
       - name: Upload Dist
         uses: actions/upload-artifact@v2
         with:
@@ -74,7 +78,7 @@ jobs:
       - uses: shrink/actions-docker-extract@v1
         with:
           image: ${{ github.repository }}/example-image:latest
-          path: /app
+          path: /app/.
       - name: Upload Dist
         uses: actions/upload-artifact@v2
         with:
@@ -84,3 +88,4 @@ jobs:
 
 [build-push-action]: https://github.com/docker/build-push-action
 [login-action]: https://github.com/docker/login-action
+[docker-cp]: https://docs.docker.com/engine/reference/commandline/cp/#extended-description

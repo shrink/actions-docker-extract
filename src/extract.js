@@ -8,6 +8,7 @@ async function run() {
     const destination = `.extracted-${Date.now()}`;
     const create = `docker cp $(docker create ${image}):/${path} ${destination}`;
 
+    await exec.exec(`mkdir -p ${destination}`);
     await exec.exec(`/bin/bash -c "${create}"`, []);
 
     core.setOutput('destination', destination);
