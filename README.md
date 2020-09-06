@@ -50,7 +50,7 @@ jobs:
       - name: Upload Dist
         uses: actions/upload-artifact@v2
         with:
-          path: ${{ steps.extract.outputs.destination }}/app
+          path: ${{ steps.extract.outputs.destination }}
           name: dist
 ```
 
@@ -78,7 +78,7 @@ jobs:
       - name: Upload Dist
         uses: actions/upload-artifact@v2
         with:
-          path: ${{ steps.extract.outputs.destination }}/app
+          path: ${{ steps.extract.outputs.destination }}
           name: dist
 ```
 
