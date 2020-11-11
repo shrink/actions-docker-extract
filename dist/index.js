@@ -967,7 +967,7 @@ async function run() {
     const create = `docker cp $(docker create ${image}):/${path} ${destination}`;
 
     await exec.exec(`mkdir -p ${destination}`);
-    await exec.exec(`/bin/bash -c "${create}"`, []);
+    await exec.exec(`/bin/sh -c "${create}"`, []);
 
     core.setOutput('destination', destination);
   } catch (error) {
