@@ -968,6 +968,8 @@ async function run() {
 
     await exec.exec(`mkdir -p ${destination}`);
     await exec.exec(`/bin/sh -c "${create}"`, []);
+    await exec.exec('pwd');
+    await exec.exec(`ls -la ${destination}`);
 
     core.setOutput('destination', destination);
   } catch (error) {

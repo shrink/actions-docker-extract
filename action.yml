@@ -12,8 +12,11 @@ outputs:
   destination:
     description: 'Destination of extracted file(s)'
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.image }}
+    - ${{ inputs.path }}
 branding:
   icon: 'scissors'
   color: 'blue'
