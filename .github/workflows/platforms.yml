@@ -15,18 +15,12 @@ jobs:
           image: example:${{ github.sha }}
           path: /files/001.txt
       - run: test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
-  windows:
-    runs-on: windows-latest
-    name: Extract Example File on Windows
-    steps:
-      - run: echo "Docker is not supported in GitHub's hosted Windows runners"
   macos:
     runs-on: macos-latest
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v2
-      - name: Install docker
-        # https://github.com/actions/virtual-environments/issues/1143#issuecomment-652264388
+      - name: Install Docker Machine
         run: |
           brew install docker docker-machine
           docker-machine create --driver virtualbox default
@@ -39,3 +33,8 @@ jobs:
           image: example:${{ github.sha }}
           path: /files/001.txt
       - run: test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
+  windows:
+    runs-on: windows-latest
+    name: Extract Example File on Windows
+    steps:
+      - run: echo "Docker is not supported in GitHub's hosted Windows runners"
