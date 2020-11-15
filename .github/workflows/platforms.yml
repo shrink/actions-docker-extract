@@ -33,6 +33,8 @@ jobs:
           brew install docker docker-machine
           docker-machine create --driver virtualbox default
           docker-machine env default | grep DOCKER >> $GITHUB_ENV
+          docker-machine env default
+          echo $GITHUB_ENV | grep DOCKER
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
