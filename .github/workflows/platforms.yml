@@ -28,8 +28,6 @@ jobs:
       - name: Install docker
         # https://github.com/actions/virtual-environments/issues/1143#issuecomment-652264388
         run: |
-          curl -Lo --create-dirs ~/.docker/machine/cache/boot2docker.iso \
-          https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
           brew install docker docker-machine
           docker-machine create --driver virtualbox default
           eval $(docker-machine env default)
