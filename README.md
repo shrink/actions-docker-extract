@@ -15,7 +15,7 @@ All inputs are required.
 
 | ID  | Description | Examples |
 | --- | ----------- | -------- |
-| `image` | Docker Image to extract files from | `alpine` `docker.pkg.github.com/github/semantic/semantic` |
+| `image` | Docker Image to extract files from | `alpine` `ghcr.io/github/super-linter:latest` |
 | `path` | Path (from root) to a file or directory within Image | `files/example.txt` `files` `files/.` |
 
 > :paperclip: To copy the **contents** of a directory the `path` must end with
@@ -61,7 +61,7 @@ jobs:
 ### Login, Pull, Extract
 
 Using [docker/login-action][login-action] to authenticate with the GitHub
-Package Registry to extract from a published Docker Image.
+Container Registry to extract from a published Docker Image.
 
 ```yaml
 jobs:
@@ -69,15 +69,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Login to GitHub Package Registry
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ github.token }}
+          password: ${{ secrets.GHCR_PAT }}
       - uses: shrink/actions-docker-extract@v1
         with:
-          image: ${{ github.repository }}/example-image:latest
+          image: ghcr.io/${{ github.repository }}:latest
           path: /app/.
       - name: Upload Dist
         uses: actions/upload-artifact@v2
