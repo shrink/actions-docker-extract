@@ -48,6 +48,7 @@ jobs:
           repository: my-example-image
           tags: latest
       - uses: shrink/actions-docker-extract@v1
+        id: extract
         with:
           image: my-example-image
           path: /app/.
@@ -76,6 +77,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PAT }}
       - uses: shrink/actions-docker-extract@v1
+        id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
           path: /app/.
