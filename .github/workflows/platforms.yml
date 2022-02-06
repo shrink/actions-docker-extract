@@ -38,10 +38,10 @@ jobs:
     name: Extract Example File on Windows
     steps:
       - uses: actions/checkout@v2
-      - run: docker build --platform linux -t example:${{ github.sha }} ./.github/tests
+      - run: docker run --name test mcr.microsoft.com/windows/nanoserver:2022 
       - uses: ./
         id: extract
         with:
-          image: example:${{ github.sha }}
-          path: /files/001.txt
-      - run: IF NOT EXISTS ${{ steps.extract.outputs.destination }}/001.txt EXIT 1
+          image: test
+          path: C:\Windows\explorer.exe
+      - run: IF NOT EXISTS ${{ steps.extract.outputs.destination }}/explorer EXIT 1
