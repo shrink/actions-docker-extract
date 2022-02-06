@@ -1,4 +1,4 @@
-name: 'Docker Extract'
+name: 'Docker Extract (Cross Platform)'
 description: 'Extract file(s) from a Docker Image, supports self hosted runners'
 author: 'John Dorman <john@boostchicken.dev>'
 inputs:
