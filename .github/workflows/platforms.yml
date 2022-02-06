@@ -38,7 +38,7 @@ jobs:
     name: Extract Example File on Windows
     steps:
       - uses: actions/checkout@v2
-      - run: docker run --name test mcr.microsoft.com/windows/nanoserver:2022 
+      - run: docker run --name test mcr.microsoft.com/windows/nanoserver 
       - uses: ./
         id: extract
         with:
