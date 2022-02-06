@@ -1,9 +1,9 @@
 # Docker Extract
 
-A GitHub Action for extracting files from a Docker Image.
+A GitHub Action for extracting files from a Docker Image.  This was forked from shrink and was modified to be compatible with Self Hosted runners, and cross platform in general
 
 ```yaml
-- uses: shrink/actions-docker-extract@v1
+- uses: boostchicken-dev/actions-docker-extract@v2
   with:
     image: 'ghost:alpine'
     path: '/var/lib/ghost/current/core/built/assets/.'
@@ -47,7 +47,7 @@ jobs:
         with:
           repository: my-example-image
           tags: latest
-      - uses: shrink/actions-docker-extract@v1
+      - uses: boostchicken-dev/actions-docker-extract@v2
         id: extract
         with:
           image: my-example-image
@@ -76,7 +76,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PAT }}
-      - uses: shrink/actions-docker-extract@v1
+      - uses: boostchicken-dev/actions-docker-extract@v2
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest

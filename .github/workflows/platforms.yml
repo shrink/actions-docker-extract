@@ -37,4 +37,11 @@ jobs:
     runs-on: windows-latest
     name: Extract Example File on Windows
     steps:
-      - run: echo "Docker is not supported in GitHub's hosted Windows runners"
+      - uses: actions/checkout@v2
+      - run: docker build -t example:${{ github.sha }} ./.github/tests
+      - uses: ./
+        id: extract
+        with:
+          image: example:${{ github.sha }}
+          path: /files/001.txt
+      - run: IF NOT EXISTS ${{ steps.extract.outputs.destination }}/001.txt EXIT 1

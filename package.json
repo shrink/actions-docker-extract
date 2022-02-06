@@ -19,16 +19,13 @@
     "url": "https://github.com/shrink/actions-docker-extract/issues"
   },
   "dependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/exec": "^1.0.4"
+    "@actions/core": "^1.6.0",
+    "@actions/exec": "^1.0.4",
+    "@actions/io": "^1.1.1"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.3",
     "eslint": "^7.2.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.0.0"
+    "eslint-plugin-import": "^2.22.0"
   }
 }
