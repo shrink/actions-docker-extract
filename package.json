@@ -1,22 +1,20 @@
 {
-  "name": "@shrink/actions-docker-extract",
-  "version": "1.0.2",
+  "name": "@boostchicken-dev/actions-docker-extract",
+  "version": "2.0.0",
   "description": "Extract from a Docker Image",
-  "author": "Samuel Ryan <sam@samryan.co.uk>",
-  "homepage": "https://github.com/shrink/actions-docker-extract#readme",
+  "author": "John Dorman <john@boostchicken.dev>",
+  "homepage": "https://github.com/boostchicken-dev/actions-docker-extract#readme",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/extract.js",
-    "lint": "eslint 'src/**.js' --fix",
-    "commit": "npm run-script lint && npm run-script build"
+    "build": "ncc build src/extract.js --license licenses.txt"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shrink/actions-document-sign.git"
+    "url": "git+https://github.com/boostchicken-dev/actions-docker-extract.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shrink/actions-docker-extract/issues"
+    "url": "https://github.com/boostchicken-dev/actions-docker-extract/issues"
   },
   "dependencies": {
     "@actions/core": "^1.6.0",
@@ -24,8 +22,6 @@
     "@actions/io": "^1.1.1"
   },
   "devDependencies": {
-    "@zeit/ncc": "^0.22.3",
-    "eslint": "^7.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "@vercel/ncc": "^0.33.1"
   }
 }
