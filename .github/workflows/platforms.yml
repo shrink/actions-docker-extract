@@ -20,7 +20,7 @@ jobs:
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v2
-      - name: Install Docker Machine
+      - name: Install Docker
         env:
           HOMEBREW_GITHUB_API_TOKEN: "${{ github.token }}"
         run: |
