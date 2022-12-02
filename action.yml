@@ -12,7 +12,7 @@ outputs:
   destination:
     description: 'Destination of extracted file(s)'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'scissors'
