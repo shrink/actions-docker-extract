@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Docker Machine
         run: |
-          brew install docker docker-machine
+          brew install docker docker-machine virtualbox
           docker-machine create --driver virtualbox default
           eval $(docker-machine env default)
           env | grep DOCKER >> $GITHUB_ENV
