@@ -3,12 +3,20 @@ name: Test Directory Extraction
 on: [push]
 
 jobs:
+  action:
+    uses: ./.github/workflows/build_action.yaml
   root-directory:
     runs-on: ubuntu-latest
+    needs:
+      - action
     name: Extract Contents of Directory from Example Image
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/build_action.yaml
+      - name: Load action build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: build-${{ github.sha }}
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -23,10 +31,16 @@ jobs:
       - run: test -e ${{ steps.extract.outputs.destination }}/y/006.txt || exit 1
   nested-directory:
     runs-on: ubuntu-latest
+    needs:
+      - action
     name: Extract Nested Directory from Example Image
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/build_action.yaml
+      - name: Load action build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: build-${{ github.sha }}
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -37,10 +51,16 @@ jobs:
       - run: test -e ${{ steps.extract.outputs.destination }}/x/005.txt || exit 1
   nested-directory-contents:
     runs-on: ubuntu-latest
+    needs:
+      - action
     name: Extract Nested Contents of Directory from Example Image
     steps:
       - uses: actions/checkout@v2
-      - uses: ./.github/workflows/build_action.yaml
+      - name: Load action build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: build-${{ github.sha }}
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
