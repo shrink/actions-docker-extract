@@ -20,12 +20,7 @@ jobs:
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v2
-      - name: Install Docker Machine
-        run: |
-          brew install docker docker-machine virtualbox
-          docker-machine create --driver virtualbox default
-          eval $(docker-machine env default)
-          env | grep DOCKER >> $GITHUB_ENV
+      - uses: docker-practice/actions-setup-docker@master
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
