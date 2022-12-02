@@ -8,6 +8,7 @@ jobs:
     name: Extract Contents of Directory from Example Image
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -25,6 +26,7 @@ jobs:
     name: Extract Nested Directory from Example Image
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -38,6 +40,7 @@ jobs:
     name: Extract Nested Contents of Directory from Example Image
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract

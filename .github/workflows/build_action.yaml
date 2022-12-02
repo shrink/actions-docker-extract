@@ -1,0 +1,13 @@
+name: "Build Action (if not available)"
+
+on: [workflow_call]
+
+jobs:
+  build-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - name: Build action (if not already built)
+        if: "!startsWith(github.ref, 'refs/heads/release')"
+        run: npm run build

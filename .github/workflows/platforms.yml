@@ -8,6 +8,7 @@ jobs:
     name: Extract Example File on Ubuntu
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -20,6 +21,7 @@ jobs:
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - name: Install Docker
         env:
           HOMEBREW_GITHUB_API_TOKEN: "${{ github.token }}"

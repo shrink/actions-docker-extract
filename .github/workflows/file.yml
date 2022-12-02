@@ -8,6 +8,7 @@ jobs:
     name: Extract Example File From Root of Built Image
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -20,6 +21,7 @@ jobs:
     name: Extract Nexted Example File From Built Image
     steps:
       - uses: actions/checkout@v2
+      - uses: ./.github/workflows/build_action.yaml
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
