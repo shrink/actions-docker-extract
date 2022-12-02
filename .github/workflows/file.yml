@@ -3,11 +3,20 @@ name: Test File Extraction
 on: [push]
 
 jobs:
+  action:
+    uses: ./.github/workflows/build_action.yaml
   root-file:
     runs-on: ubuntu-latest
+    needs:
+      - action
     name: Extract Example File From Root of Built Image
     steps:
       - uses: actions/checkout@v2
+      - name: Load action build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: build-${{ github.sha }}
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
@@ -17,9 +26,16 @@ jobs:
       - run: test -e ${{ steps.extract.outputs.destination }}/001.txt || exit 1
   nested-file:
     runs-on: ubuntu-latest
+    needs:
+      - action
     name: Extract Nexted Example File From Built Image
     steps:
       - uses: actions/checkout@v2
+      - name: Load action build from cache
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: build-${{ github.sha }}
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract

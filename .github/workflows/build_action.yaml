@@ -1,0 +1,19 @@
+name: "Build Action (if not available)"
+
+on: [workflow_call]
+
+jobs:
+  build-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - name: Build action (if not already built)
+        if: "!startsWith(github.ref, 'refs/heads/release')"
+        run: npm run build
+      - name: Push build into cache
+        if: "!startsWith(github.ref, 'refs/heads/release')"
+        uses: actions/cache@v3
+        with:
+          path: dist
+          key: build-${{ github.sha }}
