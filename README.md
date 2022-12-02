@@ -3,7 +3,7 @@
 A GitHub Action for extracting files from a Docker Image.
 
 ```yaml
-- uses: shrink/actions-docker-extract@v1
+- uses: shrink/actions-docker-extract@v2
   with:
     image: "ghost:alpine"
     path: "/var/lib/ghost/current/core/built/assets/."
@@ -47,7 +47,7 @@ jobs:
         with:
           repository: my-example-image
           tags: latest
-      - uses: shrink/actions-docker-extract@v1
+      - uses: shrink/actions-docker-extract@v2
         id: extract
         with:
           image: my-example-image
@@ -76,7 +76,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PAT }}
-      - uses: shrink/actions-docker-extract@v1
+      - uses: shrink/actions-docker-extract@v2
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
@@ -97,7 +97,7 @@ or the commit hash of a tag (immutable).
 ```yaml
 ✅ uses: shrink/actions-docker-extract@v2
 ✅ uses: shrink/actions-docker-extract@v2.0.0
-✅ uses: shrink/actions-docker-extract@abde1147dd0d248b38feda9e75768c3d2b57eefc
+✅ uses: shrink/actions-docker-extract@40400b42f4f8b663c647f535e2c6674658e39fc6
 ❌ uses: shrink/actions-docker-extract@main
 ```
 
