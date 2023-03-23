@@ -1,5 +1,5 @@
 name: 'Docker Extract (Cross Platform)'
-description: 'Extract file(s) from a Docker Image, supports self hosted runners'
+description: 'Extract file(s) from a Docker Image, supports self hosted runners, and all platforms.'
 author: 'John Dorman <john@boostchicken.dev>'
 inputs:
   image:
