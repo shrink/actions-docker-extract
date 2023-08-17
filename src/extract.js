@@ -5,7 +5,9 @@ async function run() {
   try {
     const image = core.getInput('image');
     const path = core.getInput('path');
-    const destination = `.extracted-${Date.now()}`;
+    let destination = core.getInput('destination');
+
+    if (!destination) destination = `.extracted-${Date.now()}`;
     const create = `docker cp $(docker create ${image}):/${path} ${destination}`;
 
     await exec.exec(`mkdir -p ${destination}`);
