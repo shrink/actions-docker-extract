@@ -9,7 +9,7 @@ inputs:
     description: 'Path (from root) to a file or directory within Image'
     required: true
   destination:
-    description: 'Where to extract the files to'
+    description: 'Destination path for the extracted files'
     required: false
 outputs:
   destination:
