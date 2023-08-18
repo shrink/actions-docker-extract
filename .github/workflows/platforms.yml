@@ -1,6 +1,6 @@
 name: Test Cross Platform Support
 
-on: [push]
+on: [pull_request]
 
 jobs:
   action:
@@ -12,6 +12,9 @@ jobs:
     name: Extract Example File on Ubuntu
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Load action build from cache
         uses: actions/cache@v3
         with:
@@ -31,18 +34,14 @@ jobs:
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v2
-      - name: Load action build from cache
-        uses: actions/cache@v3
+      - uses: actions/setup-node@v3
         with:
-          path: dist
-          key: build-${{ github.sha }}
+          node-version: 16
       - name: Install Docker
-        env:
-          HOMEBREW_GITHUB_API_TOKEN: "${{ github.token }}"
-        run: |
-          brew install docker colima
-          colima start
+        uses: douglascamata/setup-docker-macos-action@v1-alpha.6
       - run: docker build -t example:${{ github.sha }} ./.github/tests
+      - run: npm install
+      - run: npm run build
       - uses: ./
         id: extract
         with:
