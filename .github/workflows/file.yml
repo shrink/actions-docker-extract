@@ -1,6 +1,6 @@
 name: Test File Extraction
 
-on: [push]
+on: [pull_request]
 
 jobs:
   action:
@@ -12,6 +12,9 @@ jobs:
     name: Extract Example File From Root of Built Image
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Load action build from cache
         uses: actions/cache@v3
         with:
@@ -31,6 +34,9 @@ jobs:
     name: Extract Nexted Example File From Built Image
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Load action build from cache
         uses: actions/cache@v3
         with:
