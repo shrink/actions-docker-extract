@@ -43,7 +43,7 @@ jobs:
           path: dist
           key: build-${{ github.sha }}
       - name: Install Docker
-        uses: douglascamata/setup-docker-macos-action
+        uses: douglascamata/setup-docker-macos-action@v1-alpha
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
