@@ -43,11 +43,7 @@ jobs:
           path: dist
           key: build-${{ github.sha }}
       - name: Install Docker
-        env:
-          HOMEBREW_GITHUB_API_TOKEN: "${{ github.token }}"
-        run: |
-          brew install docker colima
-          colima start
+        uses: douglascamata/setup-docker-macos-action
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - uses: ./
         id: extract
