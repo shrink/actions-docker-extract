@@ -43,7 +43,7 @@ jobs:
           path: dist
           key: build-${{ github.sha }}
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        run: brew install qemu
       - name: Install Docker
         uses: douglascamata/setup-docker-macos-action@v1-alpha.6
       - run: docker build -t example:${{ github.sha }} ./.github/tests
