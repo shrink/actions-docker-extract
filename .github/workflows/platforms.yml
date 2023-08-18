@@ -12,6 +12,9 @@ jobs:
     name: Extract Example File on Ubuntu
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Load action build from cache
         uses: actions/cache@v3
         with:
@@ -31,6 +34,9 @@ jobs:
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Load action build from cache
         uses: actions/cache@v3
         with:
