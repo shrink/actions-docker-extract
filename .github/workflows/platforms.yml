@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: 16
       - name: Install Docker
-        uses: douglascamata/setup-docker-macos-action@v1-alpha.6
+        uses: douglascamata/setup-docker-macos-action@main
       - run: docker build -t example:${{ github.sha }} ./.github/tests
       - run: npm install
       - run: npm run build
