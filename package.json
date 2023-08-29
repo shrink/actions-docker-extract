@@ -1,6 +1,6 @@
 {
   "name": "@boostchicken-dev/actions-docker-extract",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Extract from a Docker Image",
   "author": "John Dorman <john@boostchicken.dev>",
   "homepage": "https://github.com/boostchicken-dev/actions-docker-extract#readme",
