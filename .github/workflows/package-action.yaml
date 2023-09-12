@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: pr-mpt/actions-merge-branch@v2
+      - uses: prompt/actions-merge-branch@v2
         with:
           from: "origin/${{ env.source }}"
           commit: false

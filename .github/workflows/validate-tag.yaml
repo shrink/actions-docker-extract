@@ -13,10 +13,10 @@ jobs:
         with:
           ssh-key: "${{ secrets.COMMIT_KEY }}"
       - name: Test that the tagged commit includes `dist`
-        uses: pr-mpt/actions-assert@v2
+        uses: prompt/actions-assert@v2
         with:
           assertion: npm://@assertions/directory-exists
           expected: dist
       - if: failure()
         name: Delete invalid tag
-        uses: pr-mpt/actions-delete-tag@v1
+        uses: prompt/actions-delete-tag@v1
