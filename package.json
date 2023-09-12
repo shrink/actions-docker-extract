@@ -10,10 +10,6 @@
     "lint": "eslint 'src/**.js' --fix",
     "commit": "npm run-script lint && npm run-script build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/shrink/actions-document-sign.git"
-  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shrink/actions-docker-extract/issues"
