@@ -3,7 +3,7 @@
 A GitHub Action for extracting files from a Docker Image.
 
 ```yaml
-- uses: shrink/actions-docker-extract@v2
+- uses: shrink/actions-docker-extract@v3
   with:
     image: "ghost:alpine"
     path: "/var/lib/ghost/current/core/built/assets/."
@@ -68,20 +68,20 @@ jobs:
   extract:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PAT }}
-      - uses: shrink/actions-docker-extract@v2
+      - uses: shrink/actions-docker-extract@v3
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
           path: /app/.
       - name: Upload Dist
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ${{ steps.extract.outputs.destination }}
           name: dist
