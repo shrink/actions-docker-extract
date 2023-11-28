@@ -44,18 +44,18 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v5
         with:
-          repository: my-example-image
-          tags: latest
+          tags: my-example-image:latest
+          load: true
       - uses: shrink/actions-docker-extract@v3
         id: extract
         with:
-          image: my-example-image
+          image: my-example-image:latest
           path: /app/.
+          destination: dist
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ steps.extract.outputs.destination }}
-          name: dist
+          path: dist
 ```
 
 ### Login, Pull, Extract
@@ -70,21 +70,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_PAT }}
+          registry: "ghcr.io"
+          username: "${{ github.actor }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
       - uses: shrink/actions-docker-extract@v3
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
           path: /app/.
+          destination: dist
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ steps.extract.outputs.destination }}
-          name: dist
+          path: dist
 ```
 
 ## Automatic Release Packaging

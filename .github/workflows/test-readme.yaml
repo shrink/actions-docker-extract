@@ -11,8 +11,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./.github/tests
-          load: true
           tags: my-example-image:latest
+          load: true
       - uses: shrink/actions-docker-extract@v3
         id: extract
         with:
@@ -56,6 +56,7 @@ jobs:
         with:
           image: ghcr.io/${{ github.repository }}:latest
           path: /app/.
+          destination: dist
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
