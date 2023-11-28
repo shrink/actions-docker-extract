@@ -10,6 +10,7 @@ jobs:
       - name: Build Docker Image
         uses: docker/build-push-action@v5
         with:
+          context: ./.github/tests
           load: true
           tags: my-example-image:latest
       - uses: shrink/actions-docker-extract@v3
@@ -22,8 +23,26 @@ jobs:
         with:
           path: ${{ steps.extract.outputs.destination }}
           name: dist
+  example-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: "ghcr.io"
+          username: "${{ github.actor }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./.github/tests
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
   login-pull-extract:
     runs-on: ubuntu-latest
+    needs:
+      - example-image
     steps:
       - uses: actions/checkout@v4
       - name: Login to GitHub Container Registry
@@ -36,7 +55,7 @@ jobs:
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
-          path: /app/.
+          path: /files/.
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
