@@ -55,7 +55,7 @@ jobs:
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
-          path: /files/.
+          path: /app/.
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
