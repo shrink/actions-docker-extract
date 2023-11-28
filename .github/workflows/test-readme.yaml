@@ -1,6 +1,6 @@
 name: Test Readme Example
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 
 jobs:
   build-extract:
