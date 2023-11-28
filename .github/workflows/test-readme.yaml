@@ -18,11 +18,11 @@ jobs:
         with:
           image: my-example-image:latest
           path: /app/.
+          destination: dist
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ steps.extract.outputs.destination }}
-          name: dist
+          path: dist
   example-image:
     runs-on: ubuntu-latest
     steps:
@@ -59,5 +59,4 @@ jobs:
       - name: Upload Dist
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ steps.extract.outputs.destination }}
-          name: dist
+          path: dist
