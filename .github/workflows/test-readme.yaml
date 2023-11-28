@@ -1,0 +1,63 @@
+name: Test Readme Example
+
+on: [workflow_dispatch]
+
+jobs:
+  build-extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./.github/tests
+          tags: my-example-image:latest
+          load: true
+      - uses: shrink/actions-docker-extract@v3
+        id: extract
+        with:
+          image: my-example-image:latest
+          path: /app/.
+          destination: dist
+      - name: Upload Dist
+        uses: actions/upload-artifact@v3
+        with:
+          path: dist
+  example-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: "ghcr.io"
+          username: "${{ github.actor }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./.github/tests
+          push: true
+          tags: ghcr.io/${{ github.repository }}:latest
+  login-pull-extract:
+    runs-on: ubuntu-latest
+    needs:
+      - example-image
+    steps:
+      - uses: actions/checkout@v4
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: "ghcr.io"
+          username: "${{ github.actor }}"
+          password: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: shrink/actions-docker-extract@v3
+        id: extract
+        with:
+          image: ghcr.io/${{ github.repository }}:latest
+          path: /app/.
+          destination: dist
+      - name: Upload Dist
+        uses: actions/upload-artifact@v3
+        with:
+          path: dist
