@@ -9,6 +9,11 @@ A GitHub Action for extracting files from a Docker Image.
     path: "/var/lib/ghost/current/core/built/assets/."
 ```
 
+:warning: Due to a breaking change in v3 of GitHub's actions/upload-artifact, a
+low-impact breaking change has been made to v3.0.1 of this action. Please
+see [issues#28](https://github.com/shrink/actions-docker-extract/issues/28) for
+context and support.
+
 ## Inputs
 
 | ID            | Description                                          | Required | Examples                                      |
@@ -25,7 +30,7 @@ A GitHub Action for extracting files from a Docker Image.
 
 | ID            | Description                                       | Example                  |
 | ------------- | ------------------------------------------------- | ------------------------ |
-| `destination` | Destination path containing the extracted file(s) | `.extracted-1598717412/` |
+| `destination` | Destination path containing the extracted file(s) | `extracted-1598717412/` |
 
 ## Examples
 

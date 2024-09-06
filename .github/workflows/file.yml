@@ -11,12 +11,12 @@ jobs:
       - action
     name: Extract Example File From Root of Built Image
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Load action build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist
           key: build-${{ github.sha }}
@@ -33,12 +33,12 @@ jobs:
       - action
     name: Extract Nexted Example File From Built Image
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Load action build from cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: dist
           key: build-${{ github.sha }}
