@@ -25,7 +25,7 @@ A GitHub Action for extracting files from a Docker Image.
 
 | ID            | Description                                       | Example                  |
 | ------------- | ------------------------------------------------- | ------------------------ |
-| `destination` | Destination path containing the extracted file(s) | `.extracted-1598717412/` |
+| `destination` | Destination path containing the extracted file(s) | `extracted-1598717412/` |
 
 ## Examples
 
