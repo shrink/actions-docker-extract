@@ -6,6 +6,9 @@ async function run() {
     const image = core.getInput('image');
     const path = core.getInput('path');
     const destination = core.getInput('destination') || `extracted-${Date.now()}`;
+    const shell = core.getInput('shell', {
+      default: '/bin/bash',
+    });
 
     if (!core.getInput('destination')) {
       core.notice([
@@ -20,12 +23,12 @@ async function run() {
     const create = `docker cp $(docker create ${image}):/${path} ${destination}`;
 
     await exec.exec(`mkdir -p ${destination}`);
-    await exec.exec(`/bin/bash -c "${create}"`, []);
+    await exec.exec(`${shell} -c "${create}"`, []);
 
     core.setOutput('destination', destination);
   } catch (error) {
     core.setFailed(error.message);
   }
-}
+};
 
 run();

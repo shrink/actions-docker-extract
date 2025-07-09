@@ -11,6 +11,10 @@ inputs:
   destination:
     description: 'Destination path for the extracted files'
     required: false
+  shell:
+    description: 'The shell to use for extraction (default: /bin/bash)'
+    required: false
+    default: '/bin/bash'
 outputs:
   destination:
     description: 'Destination of extracted file(s)'

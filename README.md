@@ -21,6 +21,7 @@ context and support.
 | `image`       | Docker Image to extract files from                   |    ✅    | `alpine` `ghcr.io/github/super-linter:latest` |
 | `path`        | Path (from root) to a file or directory within Image |    ✅    | `files/example.txt` `files` `files/.`         |
 | `destination` | Destination path for the extracted files             |    ❌    | `/foo/` `~/` `./foo/bar`                      |
+| `shell`       | The shell to use for extraction                      |    ❌    | `/bin/bash` `/bin/sh`                         |
 
 > :paperclip: To copy the **contents** of a directory the `path` must end with
 > `/.` otherwise the directory itself will be copied. More information about the
