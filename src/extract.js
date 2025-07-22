@@ -6,9 +6,7 @@ async function run() {
     const image = core.getInput('image');
     const path = core.getInput('path');
     const destination = core.getInput('destination') || `extracted-${Date.now()}`;
-    const shell = core.getInput('shell', {
-      default: '/bin/bash',
-    });
+    const shell = core.getInput('shell');
 
     if (!core.getInput('destination')) {
       core.notice([
