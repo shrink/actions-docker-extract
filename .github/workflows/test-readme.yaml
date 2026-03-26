@@ -60,4 +60,5 @@ jobs:
       - name: Upload Dist
         uses: actions/upload-artifact@v7
         with:
+          overwrite: true
           path: dist
