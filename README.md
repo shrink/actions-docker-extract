@@ -46,9 +46,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Build Docker Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           tags: my-example-image:latest
           load: true
@@ -59,7 +59,7 @@ jobs:
           path: /app/.
           destination: dist
       - name: Upload Dist
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           path: dist
 ```
@@ -74,9 +74,9 @@ jobs:
   extract:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v4
         with:
           registry: "ghcr.io"
           username: "${{ github.actor }}"
@@ -88,7 +88,7 @@ jobs:
           path: /app/.
           destination: dist
       - name: Upload Dist
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           path: dist
 ```
