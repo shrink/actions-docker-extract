@@ -12,9 +12,9 @@ jobs:
     name: Extract Example File From Root of Built Image
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: "package.json"
       - name: Load action build from cache
         uses: actions/cache@v4
         with:
@@ -34,9 +34,9 @@ jobs:
     name: Extract Nexted Example File From Built Image
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: "package.json"
       - name: Load action build from cache
         uses: actions/cache@v4
         with:

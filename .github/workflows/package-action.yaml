@@ -18,9 +18,9 @@ jobs:
           ref: "${{ env.release }}"
           fetch-depth: 0
           ssh-key: "${{ secrets.COMMIT_KEY }}"
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 16
+          node-version-file: "package.json"
       - uses: prompt/actions-merge-branch@v2
         with:
           from: "origin/${{ env.source }}"
