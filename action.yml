@@ -19,7 +19,7 @@ outputs:
   destination:
     description: 'Destination of extracted file(s)'
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
 branding:
   icon: 'scissors'

@@ -3,16 +3,11 @@
 A GitHub Action for extracting files from a Docker Image.
 
 ```yaml
-- uses: shrink/actions-docker-extract@v3
+- uses: shrink/actions-docker-extract@v4
   with:
     image: "ghost:alpine"
     path: "/var/lib/ghost/current/core/built/assets/."
 ```
-
-:warning: Due to a breaking change in v3 of GitHub's actions/upload-artifact, a
-low-impact breaking change has been made to v3.0.1 of this action. Please
-see [issues#28](https://github.com/shrink/actions-docker-extract/issues/28) for
-context and support.
 
 ## Inputs
 
@@ -52,7 +47,7 @@ jobs:
         with:
           tags: my-example-image:latest
           load: true
-      - uses: shrink/actions-docker-extract@v3
+      - uses: shrink/actions-docker-extract@v4
         id: extract
         with:
           image: my-example-image:latest
@@ -81,7 +76,7 @@ jobs:
           registry: "ghcr.io"
           username: "${{ github.actor }}"
           password: "${{ secrets.GITHUB_TOKEN }}"
-      - uses: shrink/actions-docker-extract@v3
+      - uses: shrink/actions-docker-extract@v4
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
@@ -100,8 +95,8 @@ tag. Any reference to this Action in a Workflow must use a [tag][tags] (mutable)
 or the commit hash of a tag (immutable).
 
 ```yaml
-✅ uses: shrink/actions-docker-extract@v3
-✅ uses: shrink/actions-docker-extract@v3.0.0
+✅ uses: shrink/actions-docker-extract@v4
+✅ uses: shrink/actions-docker-extract@v4.0.0
 ✅ uses: shrink/actions-docker-extract@40400b42f4f8b663c647f535e2c6674658e39fc6
 ❌ uses: shrink/actions-docker-extract@main
 ```

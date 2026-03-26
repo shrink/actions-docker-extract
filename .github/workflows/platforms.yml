@@ -12,9 +12,9 @@ jobs:
     name: Extract Example File on Ubuntu
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: "package.json"
       - name: Load action build from cache
         uses: actions/cache@v4
         with:
@@ -35,9 +35,9 @@ jobs:
     name: Extract Example File on macOS
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: "package.json"
       - name: Install Docker
         uses: douglascamata/setup-docker-macos-action@main
       - run: docker build -t example:${{ github.sha }} ./.github/tests
