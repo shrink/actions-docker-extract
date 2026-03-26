@@ -54,7 +54,7 @@ jobs:
           path: /app/.
           destination: dist
       - name: Upload Dist
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           path: dist
 ```
@@ -83,7 +83,7 @@ jobs:
           path: /app/.
           destination: dist
       - name: Upload Dist
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           path: dist
 ```
