@@ -13,7 +13,7 @@ jobs:
           context: ./.github/tests
           tags: my-example-image:latest
           load: true
-      - uses: shrink/actions-docker-extract@v3
+      - uses: shrink/actions-docker-extract@v4
         id: extract
         with:
           image: my-example-image:latest
@@ -51,7 +51,7 @@ jobs:
           registry: "ghcr.io"
           username: "${{ github.actor }}"
           password: "${{ secrets.GITHUB_TOKEN }}"
-      - uses: shrink/actions-docker-extract@v3
+      - uses: shrink/actions-docker-extract@v4
         id: extract
         with:
           image: ghcr.io/${{ github.repository }}:latest
